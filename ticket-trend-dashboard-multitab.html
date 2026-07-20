@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8" />
@@ -298,6 +298,7 @@
 		.tab-btn[data-tab="tab4"] { --tab-accent: #5a67d8; }
 		.tab-btn[data-tab="tab5"] { --tab-accent: #2f9367; }
 		.tab-btn[data-tab="tab6"] { --tab-accent: #9333ea; }
+		.tab-btn[data-tab="tab7"] { --tab-accent: #0f766e; }
 
 		body[data-theme="dark"] .tab-btn {
 			background: color-mix(in srgb, var(--panel-strong) 80%, var(--tab-accent) 20%);
@@ -692,6 +693,144 @@
 			color: var(--primary);
 		}
 
+		.rec-details {
+			margin-top: 8px;
+			padding-top: 8px;
+			border-top: 1px solid var(--line);
+			display: grid;
+			gap: 8px;
+		}
+
+		.rec-details .head {
+			font-size: 0.76rem;
+			font-weight: 700;
+			letter-spacing: 0.02em;
+			color: var(--muted);
+			text-transform: uppercase;
+		}
+
+		.rec-details ul {
+			margin: 0;
+			padding-left: 18px;
+			font-size: 0.84rem;
+			color: var(--ink);
+			line-height: 1.4;
+		}
+
+		.rec-kpi {
+			font-size: 0.82rem;
+			color: var(--ink);
+			background: color-mix(in srgb, var(--primary-soft) 64%, transparent);
+			border: 1px solid var(--line);
+			border-radius: 8px;
+			padding: 7px 9px;
+		}
+
+		.rec-top20 {
+			margin-top: 8px;
+			padding-top: 8px;
+			border-top: 1px solid var(--line);
+			display: grid;
+			gap: 8px;
+		}
+
+		.rec-top20 details {
+			border: 1px solid var(--line);
+			border-radius: 8px;
+			padding: 6px 8px;
+			background: color-mix(in srgb, var(--panel-strong) 85%, var(--primary-soft));
+		}
+
+		.rec-top20 summary {
+			cursor: pointer;
+			font-size: 0.84rem;
+			font-weight: 700;
+			color: var(--ink);
+		}
+
+		.rec-top20-table {
+			margin-top: 8px;
+			overflow-x: auto;
+			border: 1px solid var(--line);
+			border-radius: 8px;
+		}
+
+		.rec-top20-table table {
+			width: 100%;
+			border-collapse: collapse;
+			font-size: 0.78rem;
+		}
+
+		.rec-top20-table th,
+		.rec-top20-table td {
+			padding: 6px 8px;
+			border-bottom: 1px solid var(--line);
+			vertical-align: top;
+		}
+
+		.drill-grid {
+			display: grid;
+			gap: 12px;
+			grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+		}
+
+		.drill-card {
+			padding: 12px;
+			border-radius: 12px;
+			border: 1px solid var(--line);
+			background: color-mix(in srgb, var(--panel-strong) 82%, var(--primary-soft));
+		}
+
+		.drill-actions {
+			display: flex;
+			gap: 8px;
+			flex-wrap: wrap;
+			margin-top: 8px;
+		}
+
+		.drill-btn {
+			border: 1px solid var(--line-strong);
+			background: color-mix(in srgb, var(--primary-soft) 58%, transparent);
+			color: var(--ink);
+			padding: 6px 10px;
+			border-radius: 999px;
+			font-family: inherit;
+			font-size: 0.76rem;
+			cursor: pointer;
+		}
+
+		.drill-btn:hover {
+			background: color-mix(in srgb, var(--primary-soft) 90%, transparent);
+		}
+
+		.crumb-btn {
+			border: none;
+			background: transparent;
+			color: var(--primary);
+			padding: 0;
+			font-family: inherit;
+			font-size: 0.78rem;
+			text-decoration: underline;
+			text-underline-offset: 2px;
+			cursor: pointer;
+		}
+
+		.crumb-btn:hover {
+			color: var(--primary-2);
+		}
+
+		.drill-table-wrap {
+			overflow-x: auto;
+			border: 1px solid var(--line);
+			border-radius: 10px;
+		}
+
+		.drill-hint {
+			font-size: 0.82rem;
+			color: var(--muted);
+			margin: 0;
+		}
+
 		/* ===== ACTION PLAN STYLES ===== */
 		.ap-filter-btn {
 			padding: 4px 14px;
@@ -913,7 +1052,9 @@
 			<button class="tab-btn" data-tab="tab2" role="tab" aria-selected="false">Tab 2: Urgent/High Last 5 Weeks</button>
 			<button class="tab-btn" data-tab="tab3" role="tab" aria-selected="false">Tab 3: On Hold + Jira</button>
 			<button class="tab-btn" data-tab="tab5" role="tab" aria-selected="false">Tab 5: Top Customers + Category Distribution</button>
-		<button class="tab-btn" data-tab="tab6" role="tab" aria-selected="false">Tab 6: AI Analysis & Recommendations</button>
+			<button class="tab-btn" data-tab="tab6" role="tab" aria-selected="false">Tab 6: AI Analysis & Recommendations</button>
+			<button class="tab-btn" data-tab="tab7" role="tab" aria-selected="false">Tab 7: Cluster Drill-Down</button>
+		</div>
 
 		<section id="tab1" class="tab-panel active" role="tabpanel" data-print-title="Tab 1: 18-Month + 6-Month Trends">
 			<h1 style="margin:0 0 16px 0;color:var(--text-primary);font-size:1.8rem;">TREND ANALYSIS</h1>
@@ -1099,6 +1240,44 @@
 				<div id="actionPlanSummary" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:20px;"></div>
 				<div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;" id="actionPlanFilterBar"></div>
 				<div id="actionPlanContent"></div>
+			</article>
+		</section>
+
+		<section id="tab7" class="tab-panel" role="tabpanel" data-print-title="Tab 7: Cluster Drill-Down">
+			<h1 style="margin:0 0 16px 0;color:var(--text-primary);font-size:1.8rem;">CLUSTER DRILL-DOWN ANALYSIS</h1>
+
+			<article class="card">
+				<div class="card-head"><h2>Flow A: Cluster 1 -> Cluster 2 -> Tickets</h2><span class="hint">Stepwise drill-down by month, then category, then ticket-level details</span></div>
+				<p class="drill-hint">Step 1: Click a month. Step 2: Click a category. Step 3: Review ticket details and Jira links.</p>
+				<div id="tab7FlowAView" class="cluster-view"></div>
+			</article>
+
+			<article class="card">
+				<div class="card-head"><h2>Flow B: Cluster 3 -> Categories -> Tickets</h2><span class="hint">Stepwise drill-down by group, then category, then ticket-level details with Jira linkage</span></div>
+				<p class="drill-hint">Step 1: Click a group (for example Incidents - SKP). Step 2: Click a category. Step 3: Review ticket details and Jira links.</p>
+				<div id="tab7FlowBView" class="cluster-view"></div>
+			</article>
+
+			<article class="card">
+				<div class="card-head"><h2>🎯 Strategic Recommendations (Detailed)</h2><span class="hint">Expanded strategy, evidence, execution steps, and KPI targets</span></div>
+				<div id="tab7RecommendationsContent" class="recommendations-view"></div>
+			</article>
+
+			<article class="card" id="tab7OperatingTrackerCard">
+				<div class="card-head">
+					<h2>📌 Operating Tracker: Ticket Reduction Initiatives</h2>
+					<span class="hint">Execution tracker with owners, KPI baselines, targets, and weekly status</span>
+				</div>
+				<div id="tab7OperatingTrackerSummary" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:16px;"></div>
+				<div id="tab7OperatingTrackerContent"></div>
+			</article>
+
+			<article class="card" id="tab7DetailedActionRegisterCard">
+				<div class="card-head">
+					<h2>🧭 Detailed Action Items Register</h2>
+					<span class="hint">Area-wise detailed actions, current impact, and expected outcomes</span>
+				</div>
+				<div id="tab7DetailedActionRegister"></div>
 			</article>
 		</section>
 	</main>
@@ -1390,8 +1569,11 @@
 			tab5LiveData: null,
 			allRaw18mTickets: null,
 			jiraDetails: {},
-			comparisonData: null
+			comparisonData: null,
+			tab7Drilldown: null
 		};
+
+		const TRACKER_STATUS_STORAGE_KEY = "ticket-dashboard-tab7-tracker-status-v1";
 
 		const DEBUG_TICKET_IDS = ["154039", "154142", "154333", "154475"];
 
@@ -1788,6 +1970,8 @@
 						summary: String(row.summary || "").trim(),
 						jiraKeys: Array.isArray(row.jiraKeys) ? row.jiraKeys : [],
 						childLinked: false,
+						childTicketIds: Array.isArray(row.childTicketIds) ? row.childTicketIds : [],
+						status: String(row.status || "closed").toLowerCase(),
 						createdAt: String(row.createdAt || "")
 					}))
 				};
@@ -1808,6 +1992,8 @@
 					summary: ticket.summary || "",
 					jiraKeys: Array.isArray(ticket.jiraKeys) ? ticket.jiraKeys : [],
 					childLinked: Boolean(ticket.childLinked),
+					childTicketIds: Array.isArray(ticket.childTicketIds) ? ticket.childTicketIds : [],
+					status: String(ticket.status || "closed").toLowerCase(),
 					createdAt: ticket.createdAt || ""
 				});
 			});
@@ -1823,6 +2009,8 @@
 					summary: ticket.summary || "",
 					jiraKeys: splitJiraKeys(ticket.jira),
 					childLinked: Boolean(ticket.childLinked),
+					childTicketIds: Array.isArray(ticket.childTicketIds) ? ticket.childTicketIds : [],
+					status: String(ticket.status || "hold").toLowerCase(),
 					createdAt: ticket.createdAt || ""
 				});
 			});
@@ -1952,7 +2140,7 @@
 
 			for (const key of jiraKeys) {
 				try {
-					const url = `${SETTINGS.jiraApiBase}${encodeURIComponent(key)}?fields=priority,assignee,duedate`;
+					const url = `${SETTINGS.jiraApiBase}${encodeURIComponent(key)}?fields=status,priority,assignee,duedate`;
 					const resp = await fetch(url, {
 						method: "GET",
 						headers: {
@@ -1972,6 +2160,7 @@
 					const data = await resp.json();
 					const fields = data.fields || {};
 					STATE.jiraDetails[key] = {
+						status: fields.status ? fields.status.name : "Unknown",
 						priority: fields.priority ? fields.priority.name : "—",
 						assignee: fields.assignee ? fields.assignee.displayName : "Unassigned",
 						dueDate: fields.duedate || "—"
@@ -2007,7 +2196,18 @@
 				btn.setAttribute("aria-selected", String(active));
 			});
 			document.querySelectorAll(".tab-panel").forEach((p) => p.classList.toggle("active", p.id === tabId));
-			if (tabId === "tab6") {
+			if (tabId === "tab3") {
+				const jiraConfigured = Boolean(SETTINGS.jira.email && SETTINGS.jira.apiToken);
+				if (jiraConfigured) {
+					const holdRows = STATE.holdTickets.filter((t) => qualifiesForTab3Ticket(t));
+					const jiraKeys = [...new Set(holdRows.flatMap((t) => splitJiraKeys(t.jira)))].filter(Boolean);
+					const hasMissingDetails = jiraKeys.some((key) => !STATE.jiraDetails[key] || !STATE.jiraDetails[key].priority || !STATE.jiraDetails[key].assignee || !STATE.jiraDetails[key].dueDate || !STATE.jiraDetails[key].status);
+					if (jiraKeys.length && hasMissingDetails) {
+						fetchJiraDetailsForTab3();
+					}
+				}
+			}
+			if (tabId === "tab6" || tabId === "tab7") {
 				const statusEl = document.getElementById("analysisStatus");
 				if (statusEl && statusEl.textContent === "Ready") performClusteringAnalysis();
 			}
@@ -3132,12 +3332,14 @@ ${contentMarkup}
 					ticket:      String(ticket.id),
 					group:       ticket.__partCGroup || "Unknown",
 					priority:    String(ticket.priority || "normal"),
+					status:      String(ticket.status || "open").toLowerCase(),
 					summary:     String(ticket.subject || "").trim() || "Zendesk ticket",
 					jiraKeys:    Array.from(new Set([
 						...extractJiraKeysFromZendeskTicket(ticket, jiraFieldIds),
 						...getJiraKeysForTicket(ticket.id)
 					])),
 					childLinked: hasChildTicketAssociation(ticket),
+					childTicketIds: Array.isArray(ticket.followup_ids) ? ticket.followup_ids.map((id) => String(id || "").trim()).filter(Boolean) : [],
 					createdAt:   String(ticket.created_at || "").slice(0, 10)
 				}));
 
@@ -3188,6 +3390,16 @@ ${contentMarkup}
 					document.getElementById("analysisStatus").textContent = zendeskConfigured ? "Zendesk ready — click Refresh Now then re-run" : "No data — configure Zendesk or upload Excel on Tab 3";
 					document.getElementById("analysisSummaryKpis").innerHTML = `<div style="padding:16px;color:var(--muted);">${hint}</div>`;
 					document.getElementById("actionPlanContent").innerHTML = '<div class="ap-empty">Run the analysis after loading data to generate the action plan.</div>';
+					if (document.getElementById("tab7FlowAView")) {
+						document.getElementById("tab7FlowAView").innerHTML = '<div class="cluster-item"><em>Run analysis after loading data.</em></div>';
+						document.getElementById("tab7FlowBView").innerHTML = '<div class="cluster-item"><em>Run analysis after loading data.</em></div>';
+						document.getElementById("tab7RecommendationsContent").innerHTML = '<div class="cluster-item"><em>Detailed recommendations will appear after analysis.</em></div>';
+						document.getElementById("tab7OperatingTrackerSummary").innerHTML = '';
+						document.getElementById("tab7OperatingTrackerContent").innerHTML = '<div class="ap-empty">Run analysis after loading data to generate the operating tracker.</div>';
+						document.getElementById("tab7DetailedActionRegister").innerHTML = '<div class="ap-empty">Run analysis after loading data to generate detailed action items.</div>';
+					}
+					document.getElementById("recommendationsContent").innerHTML = '<div class="cluster-item"><em>Detailed recommendations will appear after analysis.</em></div>';
+					STATE.tab7Drilldown = null;
 					renderActionPlan([], null, null);
 					return;
 				}
@@ -3203,14 +3415,21 @@ ${contentMarkup}
 					const priority = String(t.priority || "normal").toLowerCase();
 					const groupName = String(t.group || "Unknown").trim();
 					return {
-						id: String(t.ticket || ""),
-						subject: String(t.summary || "").trim(),
+						id: String(t.ticket || t.id || ""),
+						ticket: String(t.ticket || t.id || ""),
+						subject: String(t.summary || t.subject || "").trim(),
+						summary: String(t.summary || t.subject || "").trim(),
 						description: "",
+						raw_subject: String(t.raw_subject || t.subject || t.summary || "").trim(),
+						jira: String(t.jira || ""),
+						jiraKeys: Array.isArray(t.jiraKeys) ? t.jiraKeys : [],
+						childLinked: Boolean(t.childLinked),
+						childTicketIds: Array.isArray(t.childTicketIds) ? t.childTicketIds : [],
 						group_id: groupName,
 						group_name: groupName,
 						created_at: String(t.createdAt || ""),
 						priority: priority === "urgent" ? "urgent" : priority === "high" ? "high" : "normal",
-						status: "closed"
+						status: String(t.status || "closed").toLowerCase()
 					};
 				}).filter(t => {
 					if (!t.created_at) return true; // keep if no date (static fallback)
@@ -3302,6 +3521,7 @@ ${contentMarkup}
 
 				// Render new-style analysis
 				renderNewClusterAnalysis(supportTickets, issueTypes, groupPerformance, monthlyClusters, debugSummary);
+				renderClusterDrilldownAnalysis(supportTickets, issueTypes, monthlyClusters, groupPerformance);
 				document.getElementById("analysisStatus").textContent = `✅ Analysis complete (${supportTickets.length} support tickets from ${allTickets.length} total — ${sourceLabel})`;
 			} catch (err) {
 				console.error("Clustering analysis failed:", err);
@@ -3689,58 +3909,1071 @@ ${contentMarkup}
 			});
 			document.getElementById("cluster3Content").innerHTML = c3Html;
 
-			// Recommendations
+			// Detailed strategic recommendations on both Tab 6 and Tab 7
+			const recommendations = buildDetailedStrategicRecommendations(allTickets, issueTypes, groupPerformance, monthlyClusters);
+			renderDetailedStrategicRecommendations("recommendationsContent", recommendations);
+			renderDetailedStrategicRecommendations("tab7RecommendationsContent", recommendations);
+
+			// Render data-driven action plan
+			renderActionPlan(allTickets, issueTypes, groupPerformance);
+			renderTab7OperatingTracker(allTickets, issueTypes, groupPerformance);
+		}
+
+		function toTrackerId(value) {
+			return String(value || "")
+				.toLowerCase()
+				.replace(/[^a-z0-9]+/g, "-")
+				.replace(/^-+|-+$/g, "") || "initiative";
+		}
+
+		function loadTrackerStatuses() {
+			try {
+				const raw = localStorage.getItem(TRACKER_STATUS_STORAGE_KEY);
+				if (!raw) return {};
+				const parsed = JSON.parse(raw);
+				return parsed && typeof parsed === "object" ? parsed : {};
+			} catch (_err) {
+				return {};
+			}
+		}
+
+		function saveTrackerStatuses(statuses) {
+			try {
+				localStorage.setItem(TRACKER_STATUS_STORAGE_KEY, JSON.stringify(statuses || {}));
+			} catch (_err) {
+				// Ignore storage errors in private/incognito contexts.
+			}
+		}
+
+		function buildOperatingTrackerRows(allTickets, issueTypes, groupPerformance) {
+			const total = Array.isArray(allTickets) && allTickets.length
+				? allTickets.length
+				: Number(DATA.excelTicketsSummary && DATA.excelTicketsSummary.total) || 2054;
+
+			const groupTotals = {};
+			if (Array.isArray(groupPerformance) && groupPerformance.length) {
+				groupPerformance.forEach((g) => { groupTotals[g.name] = Number(g.total || 0); });
+			} else {
+				const fallbackGroups = (DATA.excelTicketsSummary && DATA.excelTicketsSummary.groups) || {};
+				Object.entries(fallbackGroups).forEach(([name, count]) => { groupTotals[name] = Number(count || 0); });
+			}
+
+			const getCategoryCount = (name) => Number(((issueTypes || []).find((issue) => issue.name === name) || {}).count || 0);
+
+			const skp = groupTotals["Incidents - SKP"] || 900;
+			const replicate = groupTotals["Incidents - Replicate"] || 455;
+			const triage = groupTotals["General - Triage"] || 379;
+			const missingCategory = Math.max(1, Math.round(total * 0.229));
+			const etlCount = Math.max(1, getCategoryCount("Data Pipeline/ETL") || Math.round(total * 0.24));
+			const authCount = Math.max(1, getCategoryCount("Authentication/Access") || Math.round(total * 0.06));
+			const connCount = Math.max(1, getCategoryCount("Connection/Network") || Math.round(total * 0.18));
+			const perfCount = Math.max(1, getCategoryCount("Performance/Speed") || Math.round(total * 0.05));
+
+			return [
+				{
+					priority: "P1",
+					initiative: "SKP Stability Improvements",
+					owner: "SKP Engineering + Support",
+					startDate: "2026-07-27",
+					currentImpact: `Current impact: ${skp} tickets (${((skp / total) * 100).toFixed(1)}% of total)` ,
+					baseline: `SKP volume: ${skp} tickets (${((skp / total) * 100).toFixed(1)}%)`,
+					target: `Reduce SKP ticket volume by 20% to <= ${Math.round(skp * 0.8)} within 6 months`,
+					expectedOutcome: "Reduction in recurring incident tickets, lower support dependency.",
+					expectedImpact: "Potential ticket reduction contribution: 15-20%",
+					actionItems: [
+						"Implement self-diagnostics for common failures.",
+						"Improve error messages with clear resolution guidance.",
+						"Add automated failure categorization.",
+						"Increase monitoring and observability for SKP workflows.",
+						"Introduce retry and recovery mechanisms for known failure scenarios.",
+						"Conduct root cause analysis on top recurring SKP incidents."
+					]
+				},
+				{
+					priority: "P1",
+					initiative: "Replication Reliability Improvements",
+					owner: "Replicate Team + Platform",
+					startDate: "2026-07-27",
+					currentImpact: `Current impact: ${replicate} tickets (${((replicate / total) * 100).toFixed(1)}% of total)` ,
+					baseline: `Replication group volume: ${replicate} tickets (${((replicate / total) * 100).toFixed(1)}%)`,
+					target: `Reduce replication tickets by 15% to <= ${Math.round(replicate * 0.85)} within 6 months`,
+					expectedOutcome: "Significant reduction in replication-related incidents and repeat tickets.",
+					expectedImpact: "Potential ticket reduction contribution: 8-12%",
+					actionItems: [
+						"Implement automatic retry mechanisms for replication failures.",
+						"Improve logging and troubleshooting visibility.",
+						"Create user-facing replication status dashboards.",
+						"Add proactive alerts before failures become support tickets.",
+						"Perform root cause analysis on frequent synchronization failures."
+					]
+				},
+				{
+					priority: "P2",
+					initiative: "AI-Based Routing and Triage Automation",
+					owner: "Ops Automation + Triage",
+					startDate: "2026-08-03",
+					currentImpact: `Current impact: ${triage} tickets (${((triage / total) * 100).toFixed(1)}% of total)` ,
+					baseline: `General - Triage volume: ${triage} tickets (${((triage / total) * 100).toFixed(1)}%)`,
+					target: "Lift first-touch routing accuracy to >= 90% and cut reassignments by 40%",
+					expectedOutcome: "Faster routing, reduced reassignments and duplicate tickets.",
+					expectedImpact: "Potential ticket reduction contribution: 5-8%",
+					actionItems: [
+						"Implement AI-based ticket classification.",
+						"Create structured intake forms.",
+						"Auto-route tickets based on category and keywords.",
+						"Introduce mandatory categorization during submission.",
+						"Reduce manual triage activities."
+					]
+				},
+				{
+					priority: "P2",
+					initiative: "Knowledge Base and Self-Service Portal",
+					owner: "CS + Product Docs",
+					startDate: "2026-08-10",
+					currentImpact: "Current impact: recurring how-to, workflow confusion, login/access, queue stuck, and general inquiry tickets", 
+					baseline: "Recurring how-to, access, queue-stuck inquiries generating repeat contacts",
+					target: "Achieve 15-25% self-service deflection and reduce how-to tickets by 30%",
+					expectedOutcome: "Reduction in low-value support tickets and improved user self-service.",
+					expectedImpact: "Potential ticket reduction contribution: 10-15%",
+					actionItems: [
+						"Build a searchable Knowledge Base.",
+						"Create guided troubleshooting articles.",
+						"Provide in-application help and tooltips.",
+						"Add AI-powered chatbot suggestions before ticket creation.",
+						"Publish common issue resolution guides."
+					]
+				},
+				{
+					priority: "P2",
+					initiative: "Automate Top Repeating Issue Resolution",
+					owner: "Support Engineering",
+					startDate: "2026-08-10",
+					currentImpact: "Current impact: recurring job failures/timeouts, replication failures, login/access, queue stuck, and data mismatch errors", 
+					baseline: "Top repeats: job failures, replication failures, login/access, queue stuck, data mismatch",
+					target: "Reduce top 5 recurring themes by 30% and improve MTTR by 35%",
+					expectedOutcome: "Fewer repeat tickets and faster issue resolution.",
+					expectedImpact: "Cross-cutting reduction by removing recurring failure loops",
+					actionItems: [
+						"Create automated remediation scripts.",
+						"Build self-service recovery actions.",
+						"Auto-detect known error patterns.",
+						"Trigger proactive notifications when failures are identified."
+					]
+				},
+				{
+					priority: "P3",
+					initiative: "Auto-Tagging and Data Quality Improvements",
+					owner: "Data Governance + Support Ops",
+					startDate: "2026-08-17",
+					currentImpact: `Current impact: ~${missingCategory} tickets (22.9%) with missing or weak categories`,
+					baseline: `Missing/weak categories: ~${missingCategory} tickets (22.9%)`,
+					target: "Lower unclear categories to < 5% and enforce controlled taxonomy",
+					expectedOutcome: "Better routing accuracy, improved analytics, and stronger automation.",
+					expectedImpact: "Enabler for all RCA and triage automation",
+					actionItems: [
+						"Make category selection mandatory.",
+						"Implement AI auto-tagging.",
+						"Replace generic categories such as Troubleshoot - Other.",
+						"Introduce controlled taxonomy standards."
+					]
+				},
+				{
+					priority: "P3",
+					initiative: "Priority Assignment Optimization",
+					owner: "Support Leadership + Ops",
+					startDate: "2026-08-17",
+					currentImpact: "Current impact: 63% tickets marked Normal; critical SKP/Replication patterns can remain under-prioritized", 
+					baseline: "Most tickets marked Normal, causing critical issues to be de-prioritized",
+					target: "Map >= 95% of critical patterns to correct priority and cut SLA breaches by 20%",
+					expectedOutcome: "Faster attention to critical issues and fewer long-running tickets.",
+					expectedImpact: "Improved SLA performance and critical issue containment",
+					actionItems: [
+						"Define priority rules based on business impact.",
+						"Auto-escalate patterns linked to outages or failed jobs.",
+						"Use AI-based priority recommendations."
+					]
+				},
+				{
+					priority: "P3",
+					initiative: "Access and Account Recovery Self-Service",
+					owner: "IT + SST",
+					startDate: "2026-08-24",
+					baseline: `Auth/access tickets: ~${authCount}`,
+					target: "Reduce login/access tickets by 25% with self-service unlock/reset"
+				},
+				{
+					priority: "P3",
+					initiative: "Connection and Performance Guardrails",
+					owner: "Platform Engineering",
+					startDate: "2026-08-24",
+					baseline: `Connection tickets: ~${connCount}; Performance tickets: ~${perfCount}`,
+					target: "Reduce connection/performance incidents by 20% via diagnostics and capacity checks"
+				},
+				{
+					priority: "P4",
+					initiative: "Predictive Analytics and Ticket Prevention",
+					owner: "Analytics + Engineering",
+					startDate: "2026-09-01",
+					currentImpact: "Current impact: reactive support model allows recurring incidents to become tickets", 
+					baseline: `Pipeline/ETL load remains high at ~${etlCount} tickets`,
+					target: "Reduce spike-month volume by 10-15% and increase proactive interventions quarterly",
+					expectedOutcome: "Shift from reactive to proactive support and prevent incidents from becoming tickets.",
+					expectedImpact: "Medium-high strategic impact over 6-12 months",
+					actionItems: [
+						"Use historical ticket patterns to predict SLA breaches.",
+						"Predict recurring incidents before customers report them.",
+						"Implement anomaly detection for sudden spikes."
+					]
+				}
+			];
+		}
+
+		function renderTab7DetailedActionRegister(rows) {
+			const container = document.getElementById("tab7DetailedActionRegister");
+			if (!container) return;
+
+			if (!Array.isArray(rows) || !rows.length) {
+				container.innerHTML = '<div class="ap-empty">Run analysis after loading data to generate detailed action items.</div>';
+				return;
+			}
+
+			const html = rows.map((row) => {
+				const actions = Array.isArray(row.actionItems) ? row.actionItems : [];
+				return `
+					<div class="cluster-item" style="margin-bottom:12px;">
+						<div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+							<div style="font-weight:700;color:var(--ink);">${escapeHtml(row.initiative || "Initiative")}</div>
+							<span class="ap-phase-badge ${row.priority === "P1" ? "quick" : row.priority === "P2" ? "medium" : "strategic"}">${escapeHtml(row.priority || "P3")}</span>
+						</div>
+						<div style="font-size:0.82rem;color:var(--muted);margin-top:4px;">Owner: ${escapeHtml(row.owner || "TBD")} | Start: ${escapeHtml(row.startDate || "TBD")}</div>
+						<div style="font-size:0.82rem;color:var(--ink);margin-top:8px;"><strong>Current Impact:</strong> ${escapeHtml(row.currentImpact || row.baseline || "-")}</div>
+						<div style="margin-top:8px;">
+							<div style="font-weight:600;color:var(--primary);margin-bottom:6px;">Detailed Action Items</div>
+							<ul style="margin:0 0 0 18px;padding:0;color:var(--ink);font-size:0.83rem;line-height:1.45;">
+								${actions.map((item) => `<li style="margin-bottom:4px;">${escapeHtml(item)}</li>`).join("")}
+							</ul>
+						</div>
+						<div style="font-size:0.82rem;color:var(--ink);margin-top:8px;"><strong>Expected Outcome:</strong> ${escapeHtml(row.expectedOutcome || "-")}</div>
+						<div style="font-size:0.82rem;color:var(--ink);margin-top:4px;"><strong>Expected Impact:</strong> ${escapeHtml(row.expectedImpact || row.target || "-")}</div>
+						<div style="font-size:0.82rem;color:var(--ink);margin-top:4px;"><strong>KPI Target:</strong> ${escapeHtml(row.target || "-")}</div>
+					</div>
+				`;
+			}).join("");
+
+			container.innerHTML = html;
+		}
+
+		function renderTab7OperatingTracker(allTickets, issueTypes, groupPerformance) {
+			const summaryEl = document.getElementById("tab7OperatingTrackerSummary");
+			const contentEl = document.getElementById("tab7OperatingTrackerContent");
+			if (!summaryEl || !contentEl) return;
+
+			const rows = buildOperatingTrackerRows(allTickets, issueTypes, groupPerformance);
+			const statuses = loadTrackerStatuses();
+
+			const counts = {
+				"Not Started": 0,
+				"In Progress": 0,
+				"At Risk": 0,
+				"Blocked": 0,
+				"Done": 0
+			};
+
+			rows.forEach((row) => {
+				const id = toTrackerId(row.initiative);
+				const status = statuses[id] || "Not Started";
+				if (Object.prototype.hasOwnProperty.call(counts, status)) counts[status]++;
+			});
+
+			summaryEl.innerHTML = `
+				<div class="ap-kpi">
+					<div class="ap-kpi-label">Initiatives</div>
+					<div class="ap-kpi-value">${rows.length}</div>
+					<div class="ap-kpi-sub">Combined Tab 6 + manual plan</div>
+				</div>
+				<div class="ap-kpi" style="background:color-mix(in srgb,#dcfce7 30%,transparent);border-color:#10b981;">
+					<div class="ap-kpi-label">P1 Initiatives</div>
+					<div class="ap-kpi-value" style="color:#10b981;">${rows.filter((r) => r.priority === "P1").length}</div>
+					<div class="ap-kpi-sub">Highest impact workstreams</div>
+				</div>
+				<div class="ap-kpi" style="background:color-mix(in srgb,#fef3c7 30%,transparent);border-color:#f59e0b;">
+					<div class="ap-kpi-label">In Progress</div>
+					<div class="ap-kpi-value" style="color:#f59e0b;">${counts["In Progress"]}</div>
+					<div class="ap-kpi-sub">Update weekly status below</div>
+				</div>
+				<div class="ap-kpi" style="background:color-mix(in srgb,#e0f2fe 30%,transparent);border-color:var(--primary);">
+					<div class="ap-kpi-label">Target Ticket Reduction</div>
+					<div class="ap-kpi-value" style="color:var(--primary);">30-50%</div>
+					<div class="ap-kpi-sub">Expected within 6-12 months</div>
+				</div>
+			`;
+
+			const rowsHtml = rows.map((row) => {
+				const id = toTrackerId(row.initiative);
+				const status = statuses[id] || "Not Started";
+				return `
+					<tr>
+						<td class="td-group" style="font-weight:700;">${escapeHtml(row.priority)}</td>
+						<td class="td-action">
+							<div>${escapeHtml(row.initiative)}</div>
+						</td>
+						<td style="font-size:0.82rem;color:var(--muted);">${escapeHtml(row.owner)}</td>
+						<td style="font-size:0.82rem;color:var(--muted);">${escapeHtml(row.startDate)}</td>
+						<td style="font-size:0.8rem;color:var(--muted);">${escapeHtml(row.baseline)}</td>
+						<td style="font-size:0.8rem;color:var(--ink);">${escapeHtml(row.target)}</td>
+						<td>
+							<select data-tracker-id="${escapeHtml(id)}" style="padding:6px 8px;border:1px solid var(--border);border-radius:8px;background:var(--bg);color:var(--ink);font-size:0.8rem;min-width:120px;">
+								<option value="Not Started" ${status === "Not Started" ? "selected" : ""}>Not Started</option>
+								<option value="In Progress" ${status === "In Progress" ? "selected" : ""}>In Progress</option>
+								<option value="At Risk" ${status === "At Risk" ? "selected" : ""}>At Risk</option>
+								<option value="Blocked" ${status === "Blocked" ? "selected" : ""}>Blocked</option>
+								<option value="Done" ${status === "Done" ? "selected" : ""}>Done</option>
+							</select>
+						</td>
+					</tr>
+				`;
+			}).join("");
+
+			contentEl.innerHTML = `
+				<div style="font-size:0.8rem;color:var(--muted);margin-bottom:10px;">Weekly status updates are saved in your browser and persist across refreshes on this machine.</div>
+				<div style="overflow:auto;">
+					<table class="action-table">
+						<thead>
+							<tr>
+								<th style="width:7%">Priority</th>
+								<th style="width:21%">Initiative</th>
+								<th style="width:14%">Owner</th>
+								<th style="width:10%">Start Date</th>
+								<th style="width:22%">KPI Baseline</th>
+								<th style="width:18%">Target</th>
+								<th style="width:8%">Weekly Status</th>
+							</tr>
+						</thead>
+						<tbody>${rowsHtml}</tbody>
+					</table>
+				</div>
+			`;
+
+			contentEl.querySelectorAll("[data-tracker-id]").forEach((select) => {
+				select.addEventListener("change", () => {
+					const key = select.getAttribute("data-tracker-id");
+					if (!key) return;
+					statuses[key] = select.value;
+					saveTrackerStatuses(statuses);
+					renderTab7OperatingTracker(allTickets, issueTypes, groupPerformance);
+				});
+			});
+
+			renderTab7DetailedActionRegister(rows);
+		}
+
+		function classifyAnalysisTicket(ticket, issueTypes) {
+			const text = `${String(ticket.subject || "")} ${String(ticket.description || "")}`.toLowerCase();
+			for (const issue of (issueTypes || [])) {
+				const keywords = Array.isArray(issue.keywords) ? issue.keywords : [];
+				if (keywords.some((kw) => text.includes(String(kw || "").toLowerCase()))) {
+					return issue.name;
+				}
+			}
+			return "Other";
+		}
+
+		function buildDetailedStrategicRecommendations(allTickets, issueTypes, groupPerformance, monthlyClusters) {
 			const recs = [];
-			
-			if (issueTypes.length > 0) {
+			if (!Array.isArray(allTickets) || !allTickets.length) return recs;
+
+			const total = allTickets.length;
+			const months = getRollingSixMonthMonthKeys() || [];
+			const resolved = allTickets.filter((t) => ["solved", "closed"].includes(String(t.status || "").toLowerCase())).length;
+			const unresolved = total - resolved;
+			const resolutionRate = total ? ((resolved / total) * 100) : 0;
+
+			const priorityRank = (value) => {
+				const p = String(value || "").toLowerCase();
+				if (p === "urgent") return 3;
+				if (p === "high") return 2;
+				if (p === "normal") return 1;
+				return 0;
+			};
+
+			const categorized = {};
+			(allTickets || []).forEach((ticket) => {
+				const category = classifyAnalysisTicket(ticket, issueTypes);
+				if (!categorized[category]) categorized[category] = [];
+				categorized[category].push(ticket);
+			});
+
+			const topTicketsByCategory = (issueTypes || []).map((issue) => {
+				const category = issue.name;
+				const rows = (categorized[category] || [])
+					.slice()
+					.sort((a, b) => {
+						const p = priorityRank(b.priority) - priorityRank(a.priority);
+						if (p !== 0) return p;
+						return String(b.created_at || "").localeCompare(String(a.created_at || ""));
+					})
+					.slice(0, 20)
+					.map((t) => ({
+						ticket: String(t.ticket || t.id || "-"),
+						subject: String(t.subject || t.summary || "-").slice(0, 140),
+						priority: String(t.priority || "normal"),
+						status: String(t.status || "unknown"),
+						createdAt: String(t.created_at || "-"),
+						monthKey: String(t.created_at || "").slice(0, 7),
+						group: String(t.group_name || t.group || "Unknown"),
+						jiraKeys: collectPartCTicketJiraKeys(t),
+						hasChild: Boolean(t.childLinked) || collectPartCTicketChildIds(t).length > 0
+					}));
+				return {
+					category,
+					total: issue.count,
+					tickets: rows
+				};
+			});
+
+			if (Array.isArray(issueTypes) && issueTypes.length) {
 				const topIssue = issueTypes[0];
-				const pctOfTotal = ((topIssue.count / allTickets.length) * 100).toFixed(1);
+				const topIssuePct = total ? ((topIssue.count / total) * 100).toFixed(1) : "0.0";
 				recs.push({
 					type: "preventive",
-					title: `Prevent "${topIssue.name}" Issues`,
-					description: `${topIssue.count} tickets (${pctOfTotal}% of total). This is your top issue category. Investigate root causes: configuration gaps, documentation, process steps, or training needs.`,
-					impact: `Preventing 20% = ${Math.floor(topIssue.count * 0.2)} fewer tickets/month`
+					title: `Prevent recurring ${topIssue.name} incidents`,
+					description: `${topIssue.count} tickets (${topIssuePct}% of 6-month volume) are mapped to this category. Concentrating prevention here gives the largest reduction leverage.`,
+					impact: `20% reduction in this category can reduce ~${Math.floor(topIssue.count * 0.2)} tickets in the next cycle.`,
+					evidence: [
+						`Top category by volume: ${topIssue.name} (${topIssue.count} tickets)`,
+						`Portfolio share: ${topIssuePct}% of all analyzed tickets`,
+						`High-volume concentration indicates repeated root cause patterns`
+					],
+					actions: [
+						"Run weekly RCA on top 20 tickets from this category and tag root causes.",
+						"Create standard runbooks/checklists to prevent repeat tickets.",
+						"Add pre-deployment validation controls for this category's common failure modes."
+					],
+					topTicketsByCategory,
+					kpi: `KPI: reduce ${topIssue.name} ticket share from ${topIssuePct}% to <= ${(Math.max(0, Number(topIssuePct) - 4)).toFixed(1)}% within 8 weeks.`
 				});
 			}
 
-			if (groupPerformance.length > 0) {
-				const topGroup = groupPerformance[0];
-				const ugRate = parseFloat(topGroup.urgentHighRate);
-				if (ugRate > 15) {
+			if (Array.isArray(groupPerformance) && groupPerformance.length) {
+				const highRiskGroup = [...groupPerformance].sort((a, b) => Number(b.urgentHighRate || 0) - Number(a.urgentHighRate || 0))[0];
+				if (highRiskGroup) {
+					const uhRate = Number(highRiskGroup.urgentHighRate || 0);
 					recs.push({
 						type: "rootcause",
-						title: `High Urgent/High Rate in "${topGroup.name}"`,
-						description: `${topGroup.urgentHighRate}% of tickets in this group are urgent/high priority. This indicates critical issues. Root cause analysis recommended.`,
-						impact: `Reducing by 5% = ${Math.floor((topGroup.urgent + topGroup.high) * 0.05)} fewer urgent/high tickets`
+						title: `Reduce urgent/high pressure in ${highRiskGroup.name}`,
+						description: `${highRiskGroup.urgentHighCount} tickets are urgent/high in this group (${uhRate.toFixed(1)}% rate). This is the strongest severity hotspot.`,
+						impact: `Reducing urgent/high volume by 10% can remove ~${Math.max(1, Math.floor(highRiskGroup.urgentHighCount * 0.1))} critical tickets.`,
+						evidence: [
+							`Group volume: ${highRiskGroup.total} tickets`,
+							`Urgent+High count: ${highRiskGroup.urgentHighCount}`,
+							`Urgent+High rate: ${uhRate.toFixed(1)}% (highest observed group risk)`
+						],
+						actions: [
+							"Create group-level severity triage and escalation checkpoints.",
+							"Track top recurring critical scenarios and owner-level fix plans.",
+							"Set weekly critical-issue burn-down review for this group."
+						],
+						kpi: `KPI: reduce urgent/high rate in ${highRiskGroup.name} to <= ${Math.max(0, uhRate - 3).toFixed(1)}% over the next 6 weeks.`
 					});
 				}
 			}
 
-			const resRate = ((resolved / allTickets.length) * 100).toFixed(1);
-			if (resRate < 70) {
+			if (Array.isArray(monthlyClusters) && monthlyClusters.length) {
+				let peakIdx = 0;
+				for (let i = 1; i < monthlyClusters.length; i++) {
+					if ((monthlyClusters[i].total || 0) > (monthlyClusters[peakIdx].total || 0)) peakIdx = i;
+				}
+				const peakMonth = months[peakIdx] || `M${peakIdx + 1}`;
+				const peakTotal = Number(monthlyClusters[peakIdx].total || 0);
 				recs.push({
 					type: "process",
-					title: "Improve Ticket Resolution Rate",
-					description: `Current resolution rate: ${resRate}%. Implement SLA tracking, escalation procedures, and team workflow optimization.`,
-					impact: `Improving FCR by 10% = 10% reduction in future ticket volume`
+					title: `Stabilize monthly intake and reduce spikes`,
+					description: `Peak month ${peakMonth} reached ${peakTotal} tickets. Smoother intake and early detection can prevent periodic surges.`,
+					impact: `Reducing peak-month load by 12% can remove ~${Math.max(1, Math.floor(peakTotal * 0.12))} tickets during surge periods.`,
+					evidence: [
+						`Peak month identified: ${peakMonth} (${peakTotal} tickets)`,
+						"Volume variance across months suggests non-uniform issue inflow",
+						"Spikes typically increase SLA breach risk and delayed resolution"
+					],
+					actions: [
+						"Add monthly pre-spike readiness checks for top categories and groups.",
+						"Set early-warning thresholds on week-over-week category growth.",
+						"Run post-spike retrospective with corrective actions tracked to closure."
+					],
+					kpi: `KPI: keep monthly intake within +/-10% band for 3 consecutive months.`
 				});
 			}
 
-			let recHtml = '';
-			recs.forEach(r => {
-				recHtml += `
+			if (unresolved > 0) {
+				recs.push({
+					type: "process",
+					title: "Improve closure discipline for incoming tickets",
+					description: `${unresolved} tickets remain unresolved in the analyzed set. Faster, consistent closure reduces re-open and duplicate demand.`,
+					impact: `A 10% improvement in closure discipline can reduce operational backlog pressure significantly.`,
+					evidence: [
+						`Resolved tickets: ${resolved}`,
+						`Unresolved tickets: ${unresolved}`,
+						`Current resolution rate: ${resolutionRate.toFixed(1)}%`
+					],
+					actions: [
+						"Enforce aging-based SLA queue with owner accountability.",
+						"Auto-flag stale pending tickets for triage review every 48 hours.",
+						"Track reopen causes and feed fixes into category-level prevention plans."
+					],
+					kpi: `KPI: raise resolution rate from ${resolutionRate.toFixed(1)}% to >= ${Math.min(99.9, resolutionRate + 5).toFixed(1)}% in 6 weeks.`
+				});
+			}
+
+			return recs;
+		}
+
+		function renderDetailedStrategicRecommendations(targetId, recommendations) {
+			const target = document.getElementById(targetId);
+			if (!target) return;
+
+			if (!Array.isArray(recommendations) || recommendations.length === 0) {
+				target.innerHTML = '<div class="cluster-item"><em>No recommendations available. Run analysis with ticket data.</em></div>';
+				return;
+			}
+
+			let html = "";
+			recommendations.forEach((rec) => {
+				const evidenceHtml = Array.isArray(rec.evidence) && rec.evidence.length
+					? `<div class="rec-details"><div class="head">Evidence</div><ul>${rec.evidence.map((e) => `<li>${escapeHtml(e)}</li>`).join("")}</ul></div>`
+					: "";
+				const actionsHtml = Array.isArray(rec.actions) && rec.actions.length
+					? `<div class="rec-details"><div class="head">Execution Steps</div><ul>${rec.actions.map((a) => `<li>${escapeHtml(a)}</li>`).join("")}</ul></div>`
+					: "";
+
+				html += `
 					<div class="recommendation-item">
-						<span class="rec-type ${r.type}">${r.type.toUpperCase()}</span>
-						<div class="rec-title">${r.title}</div>
-						<div class="rec-description">${r.description}</div>
-						<div class="rec-impact">💡 <strong>Potential Impact:</strong> ${r.impact}</div>
+						<span class="rec-type ${escapeHtml(rec.type || "process")}">${escapeHtml(String(rec.type || "process").toUpperCase())}</span>
+						<div class="rec-title">${escapeHtml(rec.title || "Recommendation")}</div>
+						<div class="rec-description">${escapeHtml(rec.description || "")}</div>
+						<div class="rec-impact">💡 <strong>Potential Impact:</strong> ${escapeHtml(rec.impact || "")}</div>
+						${evidenceHtml}
+						${actionsHtml}
+						${rec.kpi ? `<div class="rec-kpi"><strong>Target KPI:</strong> ${escapeHtml(rec.kpi)}</div>` : ""}
 					</div>
 				`;
 			});
-			document.getElementById("recommendationsContent").innerHTML = recHtml;
 
-			// Render data-driven action plan
-			renderActionPlan(allTickets, issueTypes, groupPerformance);
+			target.innerHTML = html;
+			target.querySelectorAll("[data-rec-ticket]").forEach((btn) => {
+				btn.addEventListener("click", () => {
+					const ticketId = btn.getAttribute("data-rec-ticket") || "";
+					const category = btn.getAttribute("data-rec-category") || "";
+					const group = btn.getAttribute("data-rec-group") || "";
+					const month = btn.getAttribute("data-rec-month") || "";
+					navigateToTab7TicketDrill(ticketId, category, group, month);
+				});
+			});
+		}
+
+		function navigateToTab7TicketDrill(ticketId, categoryName, groupName, monthKey) {
+			activateTab("tab7");
+			const cache = STATE.tab7Drilldown;
+			if (!cache) {
+				alert("Tab 7 drill-down is not ready yet. Run analysis and try again.");
+				return;
+			}
+
+			const normalizedTicketId = String(ticketId || "").trim();
+			const hasTicketInGroup = (g) => {
+				const tickets = Array.isArray(cache.groupBuckets[g]) ? cache.groupBuckets[g] : [];
+				return tickets.some((t) => String(t.ticket || t.id || "") === normalizedTicketId);
+			};
+
+			const hasTicketInMonth = (m) => {
+				const tickets = Array.isArray(cache.monthBuckets[m]) ? cache.monthBuckets[m] : [];
+				return tickets.some((t) => String(t.ticket || t.id || "") === normalizedTicketId);
+			};
+
+			const ticketRow = cache.ticketById && cache.ticketById[normalizedTicketId] ? cache.ticketById[normalizedTicketId] : null;
+			const effectiveGroup = groupName && hasTicketInGroup(groupName)
+				? groupName
+				: (ticketRow && String(ticketRow.group_name || "").trim()) || "";
+
+			if (effectiveGroup && hasTicketInGroup(effectiveGroup)) {
+				cache.flowB = { step: "tickets", group: effectiveGroup, category: categoryName };
+				renderTab7FlowB();
+				document.getElementById("tab7FlowBView")?.scrollIntoView({ behavior: "smooth", block: "start" });
+				return;
+			}
+
+			const effectiveMonth = monthKey && hasTicketInMonth(monthKey)
+				? monthKey
+				: (ticketRow ? String(ticketRow.created_at || "").slice(0, 7) : "");
+
+			if (effectiveMonth && hasTicketInMonth(effectiveMonth)) {
+				cache.flowA = { step: "tickets", month: effectiveMonth, category: categoryName };
+				renderTab7FlowA();
+				document.getElementById("tab7FlowAView")?.scrollIntoView({ behavior: "smooth", block: "start" });
+				return;
+			}
+
+			alert("Could not locate this ticket in current drill-down dataset. Refresh analysis and try again.");
+		}
+
+		function renderTab7Breadcrumb(parts) {
+			const normalized = (parts || [])
+				.filter(Boolean)
+				.map((part) => (typeof part === "string" ? { label: part } : part));
+			if (!normalized.length) return "";
+
+			const html = normalized
+				.map((part, idx) => {
+					const label = escapeHtml(String(part.label || ""));
+					if (part.action) {
+						const valueAttr = part.value !== undefined ? ` data-tab7-crumb-value="${escapeHtml(String(part.value))}"` : "";
+						return `<button type="button" class="crumb-btn" data-tab7-crumb-action="${escapeHtml(String(part.action))}"${valueAttr}>${label}</button>`;
+					}
+					return `<span>${label}</span>`;
+				})
+				.join('<span style="margin:0 6px;">></span>');
+
+			return `<div style="font-size:0.82rem;color:var(--muted);margin-bottom:10px;display:flex;align-items:center;flex-wrap:wrap;gap:4px;"><span style="margin-right:6px;">Path:</span>${html}</div>`;
+		}
+
+		function navigateTab7Breadcrumb(action, value) {
+			const cache = STATE.tab7Drilldown;
+			if (!cache) return;
+			switch (action) {
+				case "a-months":
+					cache.flowA = { step: "months", month: "", category: "" };
+					renderTab7FlowA();
+					break;
+				case "a-categories":
+					cache.flowA = { step: "categories", month: String(value || ""), category: "" };
+					renderTab7FlowA();
+					break;
+				case "b-groups":
+					cache.flowB = { step: "groups", group: "", category: "" };
+					renderTab7FlowB();
+					break;
+				case "b-categories":
+					cache.flowB = { step: "categories", group: String(value || ""), category: "" };
+					renderTab7FlowB();
+					break;
+				default:
+					break;
+			}
+		}
+
+		function attachTab7BreadcrumbHandlers(container) {
+			if (!container) return;
+			container.querySelectorAll("[data-tab7-crumb-action]").forEach((btn) => {
+				btn.addEventListener("click", () => {
+					const action = btn.getAttribute("data-tab7-crumb-action") || "";
+					const value = btn.getAttribute("data-tab7-crumb-value") || "";
+					navigateTab7Breadcrumb(action, value);
+				});
+			});
+		}
+
+		function renderClusterDrilldownAnalysis(allTickets, issueTypes, monthlyClusters, groupPerformance) {
+			const monthKeys = getRollingSixMonthMonthKeys() || [];
+			const monthBuckets = {};
+			const groupBuckets = {};
+
+			monthKeys.forEach((m) => { monthBuckets[m] = []; });
+
+			(allTickets || []).forEach((ticket) => {
+				const monthKey = String(ticket.created_at || "").slice(0, 7);
+				if (monthBuckets[monthKey]) {
+					monthBuckets[monthKey].push(ticket);
+				}
+
+				const groupName = String(ticket.group_name || "Unknown");
+				if (!groupBuckets[groupName]) groupBuckets[groupName] = [];
+				groupBuckets[groupName].push(ticket);
+			});
+
+			const ticketById = {};
+			(allTickets || []).forEach((ticket) => {
+				const key = String(ticket.ticket || ticket.id || "").trim();
+				if (key) ticketById[key] = ticket;
+			});
+
+			STATE.tab7Drilldown = {
+				issueTypes: issueTypes || [],
+				monthKeys,
+				monthBuckets,
+				groupBuckets,
+				ticketById,
+				monthlyClusters: Array.isArray(monthlyClusters) ? monthlyClusters : [],
+				groupPerformance: Array.isArray(groupPerformance) ? groupPerformance : [],
+				flowA: { step: "months", month: "", category: "" },
+				flowB: { step: "groups", group: "", category: "" }
+			};
+
+			const flowAView = document.getElementById("tab7FlowAView");
+			const flowBView = document.getElementById("tab7FlowBView");
+			if (!flowAView || !flowBView) {
+				return;
+			}
+
+			renderTab7FlowA();
+			renderTab7FlowB();
+		}
+
+		function renderTab7FlowA() {
+			const cache = STATE.tab7Drilldown;
+			const container = document.getElementById("tab7FlowAView");
+			if (!container || !cache) return;
+
+			const step = cache.flowA && cache.flowA.step ? cache.flowA.step : "months";
+			if (step === "months") {
+				renderTab7FlowAMonths(container, cache);
+				return;
+			}
+			if (step === "categories") {
+				renderTab7FlowACategories(container, cache, cache.flowA.month);
+				return;
+			}
+			renderTab7FlowATickets(container, cache, cache.flowA.month, cache.flowA.category);
+		}
+
+		function renderTab7FlowAMonths(container, cache) {
+			let html = `${renderTab7Breadcrumb([{ label: "Flow A" }, { label: "Cluster 1 Months", action: "a-months" }])}`;
+			html += '<div class="drill-grid">';
+			(cache.monthKeys || []).forEach((monthKey, idx) => {
+				const mc = (cache.monthlyClusters && cache.monthlyClusters[idx]) || { total: 0, urgent: 0, high: 0 };
+				html += `
+					<div class="drill-card">
+						<div style="font-size:0.84rem;color:var(--muted);">Step 1: Cluster 1 Month</div>
+						<div style="font-weight:700;font-size:1rem;color:var(--ink);margin-top:2px;">${escapeHtml(monthKey)}</div>
+						<div style="font-size:1.3rem;font-weight:700;color:var(--primary);margin-top:6px;">${mc.total}</div>
+						<div style="font-size:0.8rem;color:var(--muted);">U: ${mc.urgent} | H: ${mc.high}</div>
+						<div class="drill-actions"><button type="button" class="drill-btn" data-tab7-a-month="${escapeHtml(monthKey)}">Open Cluster 2 categories</button></div>
+					</div>
+				`;
+			});
+			html += '</div>';
+			container.innerHTML = html;
+			attachTab7BreadcrumbHandlers(container);
+
+			document.querySelectorAll("[data-tab7-a-month]").forEach((btn) => {
+				btn.addEventListener("click", () => {
+					const month = btn.getAttribute("data-tab7-a-month") || "";
+					cache.flowA = { step: "categories", month, category: "" };
+					renderTab7FlowA();
+				});
+			});
+		}
+
+		function renderTab7FlowACategories(container, cache, monthKey) {
+			if (!container || !cache) return;
+
+			const tickets = Array.isArray(cache.monthBuckets[monthKey]) ? cache.monthBuckets[monthKey] : [];
+			if (!tickets.length) {
+				container.innerHTML = '<div class="cluster-item"><em>Run analysis first.</em></div>';
+				return;
+			}
+
+			const categoryCounts = {};
+			tickets.forEach((ticket) => {
+				const category = classifyAnalysisTicket(ticket, cache.issueTypes);
+				categoryCounts[category] = (categoryCounts[category] || 0) + 1;
+			});
+
+			const rows = Object.entries(categoryCounts)
+				.sort((a, b) => b[1] - a[1])
+				.map(([category, count]) => {
+					const pct = ((count / tickets.length) * 100).toFixed(1);
+					return `<tr>
+						<td><button type="button" class="drill-btn" data-tab7-a-category="${escapeHtml(category)}">${escapeHtml(category)}</button></td>
+						<td class="num">${count}</td>
+						<td class="num">${pct}%</td>
+					</tr>`;
+				})
+				.join("");
+
+			container.innerHTML = `
+				<div class="cluster-item">
+					${renderTab7Breadcrumb([{ label: "Flow A", action: "a-months" }, { label: monthKey, action: "a-categories", value: monthKey }, { label: "Cluster 2 Categories" }]) }
+					<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
+						<button type="button" class="drill-btn" data-tab7-a-back-months="1">Back to Months</button>
+					</div>
+					<div style="font-weight:700;color:var(--ink);margin-bottom:8px;">Step 2: Cluster 2 Categories | ${escapeHtml(monthKey)} (${tickets.length} tickets)</div>
+					<div class="drill-table-wrap">
+						<table>
+							<thead><tr><th>Category</th><th class="num">Tickets</th><th class="num">Share</th></tr></thead>
+							<tbody>${rows}</tbody>
+						</table>
+					</div>
+				</div>
+			`;
+			attachTab7BreadcrumbHandlers(container);
+
+			document.querySelectorAll("[data-tab7-a-back-months]").forEach((btn) => {
+				btn.addEventListener("click", () => {
+					cache.flowA = { step: "months", month: "", category: "" };
+					renderTab7FlowA();
+				});
+			});
+
+			document.querySelectorAll("[data-tab7-a-category]").forEach((btn) => {
+				btn.addEventListener("click", () => {
+					const category = btn.getAttribute("data-tab7-a-category") || "";
+					cache.flowA = { step: "tickets", month: monthKey, category };
+					renderTab7FlowA();
+				});
+			});
+		}
+
+		function renderTab7FlowATickets(container, cache, monthKey, categoryName) {
+			const sourceTickets = Array.isArray(cache.monthBuckets[monthKey]) ? cache.monthBuckets[monthKey] : [];
+			const filtered = sourceTickets.filter((ticket) => classifyAnalysisTicket(ticket, cache.issueTypes) === categoryName);
+			const actionsHtml = `${renderTab7Breadcrumb([{ label: "Flow A", action: "a-months" }, { label: monthKey, action: "a-categories", value: monthKey }, { label: categoryName }, { label: "Tickets" }])}<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;"><button type="button" class="drill-btn" data-tab7-a-back-categories="1">Back to Categories</button><button type="button" class="drill-btn" data-tab7-a-back-months="1">Back to Months</button></div>`;
+			renderTab7TicketTable(container, filtered, `Step 3: Tickets | ${monthKey} | ${categoryName}`, actionsHtml);
+			attachTab7BreadcrumbHandlers(container);
+
+			document.querySelectorAll("[data-tab7-a-back-categories]").forEach((btn) => {
+				btn.addEventListener("click", () => {
+					cache.flowA = { step: "categories", month: monthKey, category: "" };
+					renderTab7FlowA();
+				});
+			});
+
+			document.querySelectorAll("[data-tab7-a-back-months]").forEach((btn) => {
+				btn.addEventListener("click", () => {
+					cache.flowA = { step: "months", month: "", category: "" };
+					renderTab7FlowA();
+				});
+			});
+		}
+
+		function renderTab7FlowB() {
+			const cache = STATE.tab7Drilldown;
+			const container = document.getElementById("tab7FlowBView");
+			if (!container || !cache) return;
+
+			const step = cache.flowB && cache.flowB.step ? cache.flowB.step : "groups";
+			if (step === "groups") {
+				renderTab7FlowBGroups(container, cache);
+				return;
+			}
+			if (step === "categories") {
+				renderTab7FlowBCategories(container, cache, cache.flowB.group);
+				return;
+			}
+			renderTab7FlowBTickets(container, cache, cache.flowB.group, cache.flowB.category);
+		}
+
+		function renderTab7FlowBGroups(container, cache) {
+			let html = `${renderTab7Breadcrumb([{ label: "Flow B" }, { label: "Cluster 3 Groups", action: "b-groups" }])}`;
+			html += '<div class="drill-grid">';
+			(cache.groupPerformance || []).forEach((group) => {
+				html += `
+					<div class="drill-card">
+						<div style="font-size:0.84rem;color:var(--muted);">Step 1: Cluster 3 Group</div>
+						<div style="font-weight:700;font-size:1rem;color:var(--ink);margin-top:2px;">${escapeHtml(group.name)}</div>
+						<div style="font-size:1.3rem;font-weight:700;color:var(--primary);margin-top:6px;">${group.total}</div>
+						<div style="font-size:0.8rem;color:var(--muted);">Urgent+High: ${group.urgentHighCount} (${group.urgentHighRate}%)</div>
+						<div class="drill-actions"><button type="button" class="drill-btn" data-tab7-b-group="${escapeHtml(group.name)}">Open Categories + Jira</button></div>
+					</div>
+				`;
+			});
+			html += '</div>';
+			container.innerHTML = html;
+			attachTab7BreadcrumbHandlers(container);
+
+			document.querySelectorAll("[data-tab7-b-group]").forEach((btn) => {
+				btn.addEventListener("click", () => {
+					const group = btn.getAttribute("data-tab7-b-group") || "";
+					cache.flowB = { step: "categories", group, category: "" };
+					renderTab7FlowB();
+				});
+			});
+		}
+
+		function renderTab7FlowBCategories(container, cache, groupName) {
+			if (!container || !cache) return;
+
+			const tickets = Array.isArray(cache.groupBuckets[groupName]) ? cache.groupBuckets[groupName] : [];
+			if (!tickets.length) {
+				container.innerHTML = '<div class="cluster-item"><em>Run analysis first.</em></div>';
+				return;
+			}
+
+			const categoryStats = {};
+			let jiraLinkedTotal = 0;
+
+			tickets.forEach((ticket) => {
+				const category = classifyAnalysisTicket(ticket, cache.issueTypes);
+				const jiraKeys = collectPartCTicketJiraKeys(ticket);
+				const hasJira = jiraKeys.length > 0;
+
+				if (!categoryStats[category]) {
+					categoryStats[category] = { total: 0, jiraLinked: 0, jiraKeys: new Set() };
+				}
+
+				categoryStats[category].total++;
+				if (hasJira) {
+					categoryStats[category].jiraLinked++;
+					jiraLinkedTotal++;
+					jiraKeys.forEach((key) => categoryStats[category].jiraKeys.add(key));
+				}
+			});
+
+			const rows = Object.entries(categoryStats)
+				.sort((a, b) => b[1].total - a[1].total)
+				.map(([category, stat]) => {
+					const jiraRate = stat.total ? ((stat.jiraLinked / stat.total) * 100).toFixed(1) : "0.0";
+					const sampleKeys = Array.from(stat.jiraKeys).slice(0, 3).join(", ");
+					return `<tr>
+						<td><button type="button" class="drill-btn" data-tab7-b-category="${escapeHtml(category)}">${escapeHtml(category)}</button></td>
+						<td class="num">${stat.total}</td>
+						<td class="num">${stat.jiraLinked}</td>
+						<td class="num">${jiraRate}%</td>
+						<td>${sampleKeys ? escapeHtml(sampleKeys) : "-"}</td>
+					</tr>`;
+				})
+				.join("");
+
+			container.innerHTML = `
+				<div class="cluster-item">
+					${renderTab7Breadcrumb([{ label: "Flow B", action: "b-groups" }, { label: groupName, action: "b-categories", value: groupName }, { label: "Categories + Jira" }]) }
+					<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
+						<button type="button" class="drill-btn" data-tab7-b-back-groups="1">Back to Groups</button>
+					</div>
+					<div style="font-weight:700;color:var(--ink);margin-bottom:8px;">Step 2: Categories + Jira | ${escapeHtml(groupName)}</div>
+					<div class="drill-grid" style="margin-bottom:12px;">
+						<div class="drill-card"><div style="font-size:0.8rem;color:var(--muted);">Group Tickets</div><div style="font-size:1.25rem;font-weight:700;color:var(--primary);">${tickets.length}</div></div>
+						<div class="drill-card"><div style="font-size:0.8rem;color:var(--muted);">Jira-Linked Tickets</div><div style="font-size:1.25rem;font-weight:700;color:var(--primary);">${jiraLinkedTotal}</div></div>
+						<div class="drill-card"><div style="font-size:0.8rem;color:var(--muted);">Jira Coverage</div><div style="font-size:1.25rem;font-weight:700;color:var(--primary);">${((jiraLinkedTotal / tickets.length) * 100).toFixed(1)}%</div></div>
+					</div>
+					<div class="drill-table-wrap">
+						<table>
+							<thead><tr><th>Category</th><th class="num">Tickets</th><th class="num">Jira Linked</th><th class="num">Jira Link Rate</th><th>Sample Jira Keys</th></tr></thead>
+							<tbody>${rows}</tbody>
+						</table>
+					</div>
+				</div>
+			`;
+			attachTab7BreadcrumbHandlers(container);
+
+			document.querySelectorAll("[data-tab7-b-back-groups]").forEach((btn) => {
+				btn.addEventListener("click", () => {
+					cache.flowB = { step: "groups", group: "", category: "" };
+					renderTab7FlowB();
+				});
+			});
+
+			document.querySelectorAll("[data-tab7-b-category]").forEach((btn) => {
+				btn.addEventListener("click", () => {
+					const category = btn.getAttribute("data-tab7-b-category") || "";
+					cache.flowB = { step: "tickets", group: groupName, category };
+					renderTab7FlowB();
+				});
+			});
+		}
+
+		function renderTab7FlowBTickets(container, cache, groupName, categoryName) {
+			const sourceTickets = Array.isArray(cache.groupBuckets[groupName]) ? cache.groupBuckets[groupName] : [];
+			const filtered = sourceTickets.filter((ticket) => classifyAnalysisTicket(ticket, cache.issueTypes) === categoryName);
+			const actionsHtml = `${renderTab7Breadcrumb([{ label: "Flow B", action: "b-groups" }, { label: groupName, action: "b-categories", value: groupName }, { label: categoryName }, { label: "Tickets" }])}<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;"><button type="button" class="drill-btn" data-tab7-b-back-categories="1">Back to Categories</button><button type="button" class="drill-btn" data-tab7-b-back-groups="1">Back to Groups</button></div>`;
+			renderTab7TicketTable(container, filtered, `Step 3: Tickets | ${groupName} | ${categoryName}`, actionsHtml);
+			attachTab7BreadcrumbHandlers(container);
+
+			document.querySelectorAll("[data-tab7-b-back-categories]").forEach((btn) => {
+				btn.addEventListener("click", () => {
+					cache.flowB = { step: "categories", group: groupName, category: "" };
+					renderTab7FlowB();
+				});
+			});
+
+			document.querySelectorAll("[data-tab7-b-back-groups]").forEach((btn) => {
+				btn.addEventListener("click", () => {
+					cache.flowB = { step: "groups", group: "", category: "" };
+					renderTab7FlowB();
+				});
+			});
+		}
+
+		function renderTab7TicketTable(container, tickets, title, actionsHtml = "") {
+			if (!tickets.length) {
+				container.innerHTML = `<div class="cluster-item">${actionsHtml}<strong>${escapeHtml(title)}</strong><div style="margin-top:8px;"><em>No tickets found for this selection.</em></div></div>`;
+				return;
+			}
+
+			const ticketById = (STATE.tab7Drilldown && STATE.tab7Drilldown.ticketById) ? STATE.tab7Drilldown.ticketById : {};
+			const zendeskSubdomain = String((SETTINGS.zendesk && SETTINGS.zendesk.subdomain) || "").trim();
+
+			const toTitleCase = (value) => {
+				const text = String(value || "").trim();
+				if (!text) return "-";
+				return text.replace(/[_-]/g, " ").replace(/\b\w/g, (m) => m.toUpperCase());
+			};
+
+			const rows = tickets
+				.slice()
+				.sort((a, b) => String(b.created_at || "").localeCompare(String(a.created_at || "")))
+				.slice(0, 250)
+				.map((ticket) => {
+					const ticketId = String(ticket.ticket || ticket.id || "-");
+					const ticketStatus = toTitleCase(ticket.status || "unknown");
+					const jiraKeys = collectPartCTicketJiraKeys(ticket);
+					const childIds = collectPartCTicketChildIds(ticket);
+					const hasChildAssociation = Boolean(ticket.childLinked) || childIds.length > 0;
+					const associationType = jiraKeys.length > 0 && hasChildAssociation
+						? "Jira + Child"
+						: jiraKeys.length > 0
+							? "Jira"
+							: hasChildAssociation ? "Child" : "None";
+
+					const jiraCell = jiraKeys.length
+						? jiraKeys.map((key) => {
+							const href = `${SETTINGS.jiraBaseUrl}${encodeURIComponent(key)}`;
+							return `<a href="${href}" target="_blank" rel="noopener noreferrer" style="margin-right:6px;">${escapeHtml(key)}</a>`;
+						}).join("")
+						: "-";
+
+					const childCell = childIds.length
+						? childIds.map((cid) => {
+							const childRow = ticketById[String(cid)] || null;
+							const childStatus = childRow ? toTitleCase(childRow.status || "unknown") : "Status N/A";
+							const childLabel = `${escapeHtml(String(cid))} (${escapeHtml(childStatus)})`;
+							if (zendeskSubdomain) {
+								const zendeskHref = `https://${zendeskSubdomain}.zendesk.com/agent/tickets/${encodeURIComponent(cid)}`;
+								return `<a href="${zendeskHref}" target="_blank" rel="noopener noreferrer" style="margin-right:6px;">${childLabel}</a>`;
+							}
+							return `<span style="margin-right:6px;">${childLabel}</span>`;
+						}).join("")
+						: (ticket.childLinked ? "Child linked (ID not available in current dataset)" : "-");
+
+					return `<tr>
+						<td class="mono">${escapeHtml(ticketId)}</td>
+						<td>${escapeHtml(String(ticket.subject || ticket.summary || "-").slice(0, 180))}</td>
+						<td>${escapeHtml(String(ticket.priority || "normal"))}</td>
+						<td>${escapeHtml(ticketStatus)}</td>
+						<td>${escapeHtml(associationType)}</td>
+						<td>${escapeHtml(String(ticket.created_at || "-"))}</td>
+						<td>${jiraCell}</td>
+						<td>${childCell}</td>
+					</tr>`;
+				})
+				.join("");
+
+			const truncatedNote = tickets.length > 250
+				? `<div style="font-size:0.8rem;color:var(--muted);margin-bottom:8px;">Showing latest 250 of ${tickets.length} tickets.</div>`
+				: `<div style="font-size:0.8rem;color:var(--muted);margin-bottom:8px;">${tickets.length} ticket(s) found.</div>`;
+
+			container.innerHTML = `
+				<div class="cluster-item">
+					${actionsHtml}
+					<div style="font-weight:700;color:var(--ink);margin-bottom:8px;">${escapeHtml(title)}</div>
+					<div style="font-size:0.8rem;color:var(--muted);margin-bottom:8px;">Child ticket status is shown when the child ticket is present in the currently loaded 6-month dataset.</div>
+					${truncatedNote}
+					<div class="drill-table-wrap">
+						<table>
+							<thead><tr><th>Ticket</th><th>Subject</th><th>Priority</th><th>Status</th><th>Association</th><th>Created</th><th>Linked Jira</th><th>Child Ticket(s)</th></tr></thead>
+							<tbody>${rows}</tbody>
+						</table>
+					</div>
+				</div>
+			`;
 		}
 
 		// ========== ACTION PLAN: REDUCE TICKET COUNT ==========
@@ -4289,6 +5522,38 @@ ${contentMarkup}
 				...fromMapped,
 				...fromText
 			].map((key) => String(key || "").trim().toUpperCase()).filter((key) => /^[A-Z]{2,10}-\d{1,7}$/.test(key))));
+		}
+
+		function collectPartCTicketChildIds(ticketLike) {
+			if (!ticketLike || typeof ticketLike !== "object") {
+				return [];
+			}
+
+			const fromDirectArray = Array.isArray(ticketLike.childTicketIds)
+				? ticketLike.childTicketIds.map((id) => String(id || "").trim())
+				: [];
+
+			const fromFollowups = Array.isArray(ticketLike.followup_ids)
+				? ticketLike.followup_ids.map((id) => String(id || "").trim())
+				: [];
+
+			const fromText = [
+				ticketLike.summary,
+				ticketLike.subject,
+				ticketLike.description,
+				ticketLike.raw_subject
+			]
+				.map((value) => String(value || ""))
+				.flatMap((text) => {
+					const matches = text.match(/\b\d{5,9}\b/g);
+					return matches || [];
+				});
+
+			return Array.from(new Set([
+				...fromDirectArray,
+				...fromFollowups,
+				...fromText
+			].map((id) => String(id || "").trim()).filter((id) => /^\d{5,9}$/.test(id))));
 		}
 
 		function extractJiraKeysFromZendeskTicket(ticket, jiraFieldIds) {
@@ -5581,7 +6846,7 @@ ${contentMarkup}
 				const org = getOrganizationName(t.ticket);
 				const jiraKeys = splitJiraKeys(t.jira);
 				const jiraStatus = jiraKeys.length
-					? jiraKeys.map((jira) => `${jira}: ${DATA.jiraStatusByKey[jira] || "Unknown"}`).join(" | ")
+					? jiraKeys.map((jira) => `${jira}: ${STATE.jiraDetails[jira] ? STATE.jiraDetails[jira].status : (DATA.jiraStatusByKey[jira] || "Unknown")}`).join(" | ")
 					: "Unknown";
 				const jiraPriority = jiraKeys.length
 					? jiraKeys.map((jira) => STATE.jiraDetails[jira] ? STATE.jiraDetails[jira].priority : "—").join(" | ")
@@ -5821,6 +7086,7 @@ ${contentMarkup}
 			const rows = [["Ticket", "Organization", "Zendesk Priority", "Zendesk Status", "Created", "Jira Status", "Jira Priority", "Developer Assigned", "Due Date", "Jira Link", "Ticket Age (Days)"]];
 			STATE.holdTickets.filter((t) => qualifiesForTab3Ticket(t)).forEach((t) => {
 				const jiraKeys = splitJiraKeys(t.jira);
+				const jiraStatus = jiraKeys.map((jira) => STATE.jiraDetails[jira] ? STATE.jiraDetails[jira].status : (DATA.jiraStatusByKey[jira] || "Unknown")).join(" | ") || "Unknown";
 				const jiraPriority = jiraKeys.map((jira) => STATE.jiraDetails[jira] ? STATE.jiraDetails[jira].priority : "—").join(" | ") || "—";
 				const jiraAssignee = [...new Set(jiraKeys.map((jira) => STATE.jiraDetails[jira] ? STATE.jiraDetails[jira].assignee : "—"))].join(" | ") || "—";
 				const jiraDueDate = [...new Set(jiraKeys.map((jira) => STATE.jiraDetails[jira] ? STATE.jiraDetails[jira].dueDate : "—"))].join(" | ") || "—";
@@ -5830,7 +7096,7 @@ ${contentMarkup}
 					t.priority,
 					t.status,
 					t.createdAt,
-					jiraKeys.length ? jiraKeys.map((jira) => `${jira}: ${DATA.jiraStatusByKey[jira] || "Unknown"}`).join(" | ") : "Unknown",
+					jiraStatus,
 					jiraPriority,
 					jiraAssignee,
 					jiraDueDate,
@@ -6643,12 +7909,22 @@ ${contentMarkup}
 					const wb = XLSX.read(buf, { type: "array" });
 					const ws = wb.Sheets[wb.SheetNames[0]];
 					const raw = XLSX.utils.sheet_to_json(ws, { defval: "" });
+					const extractChildIds = (value) => {
+						const txt = String(value || "");
+						const ids = txt.match(/\b\d{5,9}\b/g) || [];
+						return Array.from(new Set(ids.map((id) => String(id).trim())));
+					};
 					// Map Excel rows to the standard ticket row format
 					const ticketRows = raw.map(r => ({
 						ticket:    String(r["Ticket ID"] || r["ticket"] || r["ID"] || r["id"] || ""),
 						group:     String(r["Group"] || r["group"] || ""),
 						priority:  String(r["Priority"] || r["priority"] || "normal").toLowerCase(),
+						status:    String(r["Status"] || r["status"] || "closed").toLowerCase(),
 						summary:   String(r["Subject"] || r["Summary"] || r["summary"] || r["subject"] || ""),
+						jira:      String(r["Jira"] || r["Jira Key"] || r["Jira Keys"] || r["Linked Jira"] || r["jira"] || ""),
+						jiraKeys:  parseJiraKeysFromText(String(r["Jira"] || r["Jira Key"] || r["Jira Keys"] || r["Linked Jira"] || r["jira"] || "")),
+						childTicketIds: extractChildIds(r["Child Ticket"] || r["Child Tickets"] || r["child ticket"] || r["child tickets"] || ""),
+						childLinked: extractChildIds(r["Child Ticket"] || r["Child Tickets"] || r["child ticket"] || r["child tickets"] || "").length > 0,
 						createdAt: String(r["Created at"] || r["Created At"] || r["createdAt"] || r["Date"] || "")
 					})).filter(r => r.ticket || r.summary);
 					if (!ticketRows.length) throw new Error("No ticket rows found in file");
